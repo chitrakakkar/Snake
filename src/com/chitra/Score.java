@@ -1,11 +1,12 @@
-package com.clara;
+package com.chitra;
 
 /** Keeps track of, and display the user's score
  * 
  */
 
 
-public class Score {
+public class Score
+{
 
 	protected static int score;
 	protected static int highScore = 0;
@@ -13,7 +14,7 @@ public class Score {
 	
 	public Score(){
 		score = 0;
-		increment = 1;  //how many points for eating a kibble
+		increment = 5;  //how many points for eating a kibble
 		//Possible TODO get more points for eating kibbles, the longer the snake gets?
 	}
 	
@@ -33,7 +34,7 @@ public class Score {
 	
 	//Checks if current score is greater than the current high score. 
 	//updates high score and returns true if so.
-	
+	// checking the high score each time the game is over
 	public boolean gameOver(){
 		
 		if (score > highScore) {
@@ -48,13 +49,14 @@ public class Score {
 	public String getStringScore() {
 		return Integer.toString(score);
 	}
-
+// updating the high score
 	public String newHighScore() {
 		
 		if (score > highScore) {
 			highScore = score;
 			return "New High Score!!";
-		} else {
+		} else
+		{
 			return "";
 	}
 	}

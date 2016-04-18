@@ -1,29 +1,39 @@
-package com.clara;
+package com.chitra;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Clara. Manages game components such as the Snake, Kibble... and their interactions.
  */
-public class GameComponentManager {
+public class GameComponentManager
+{
+
 
     private Kibble kibble;
     private Snake snake;
     private Score score;
-
+    private Mazes mazes;
     /** Called every clock tick. Tell components to interact/update,
      * manage interactions, update score etc.
      * If there were more components - e.g walls, mazes,
      * different types of kibble/prizes, different scoring systems...
      * they could be managed here too
      */
-    public void update() {
+    public void update()
+    {
         snake.moveSnake();
-        if (snake.didEatKibble(kibble)) {
+        if(!snake.didHitMaze(mazes))
+        {
+            snake.isGameOver();
+        }
+        if (snake.didEatKibble(kibble))
+        {
 			//tell kibble to update
-            kibble.moveKibble(snake);
+           kibble.moveKibble(snake);
             Score.increaseScore();
 		}
     }
-
     public void newGame() {
         snake.reset();
     }
@@ -41,6 +51,10 @@ public class GameComponentManager {
         this.score = score;
     }
 
+    public void addMazes(Mazes mazes)
+    {
+        this.mazes = mazes;
+    }
     public Score getScore() {
         return score;
     }
@@ -52,5 +66,7 @@ public class GameComponentManager {
     public Snake getSnake() {
         return snake;
     }
+    public Mazes getMazes() {return mazes;}
+
 
 }
